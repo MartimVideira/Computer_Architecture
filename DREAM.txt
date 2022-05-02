@@ -1,0 +1,67 @@
+-----------------------=Notas=----------------------------------
+MRS -> move to REGISTER from SPECIAL
+MSR -> move to SPECIAL 	from register 
+
+Utilização de registos:
+
+x8, x16,x18 NÃO USAR
+
+X0-X7 são usados para passar parametros podemos usar
+x19- x28 callee must preserve  entao podemos usar e não precisamos de os por na stack
+mas se estivermos a escrever uma subrotina e nao um programa principal devemos tambem preservar no inicio
+x19 a x28
+x9 - x15 podemos usar mas a callee pode usar tambem entao temos que os por na stack
+
+
+
+SP // X31 Contem o endereço para o topo da pilha(endereço baixo pois a pilha cresce para baixo)
+
+LR //X30 LINK REGISTER contem o endereço de retorno  se apagar fodeu
+
+FP // x29 Frame Pointer contem o endereço para a moldura para a moldura da subrotina 
+frame pointer is a pointer to the frame of a function
+
+
+ver como se usam constantes
+
+
+----------------------NUMEROS VIRGULA FLUTUANTE---------------
+
+Operandos tem que ser do mesmo tipo
+Todas as instruçoes afetam as flags 
+A Flags podems ser acedidos atraves do registo nzcv 
+o 3 -> 0011 correspopnde a not a number
+
+conversao entre formatos: fcvt
+as instruçoes de conversão podem gerar excepcoes 
+
+conversao de formato de precisao mais baixo para mais alto o valor é conservado
+
+conversao de formato mais alto para mais baixo pode gerar arredondamento ou produxir nan caso o numero eseja fora da gama
+
+
+-----------------------------=SIMD=--------------------
+Variantes das instrucoes:
+
+LONG ;
+	aS instruçoes terminam em L 
+	os elementos do resultado tem o dobro do tamanho dos operandos
+Wide ;
+	as instrucoes terminam em w
+	usa opereandos de 64 e 128 por exemplo e produz resultado de 128
+	ou 16 e 32 e produz resultado de 32
+Narrow ;
+	as instrucoes terminam em n?
+	os elementos do resultado tem metade do comprimento dos do operando
+
+Saturacao;
+	o resultado nunca passa do valor maximo ou minimo da representacao
+
+
+---Comparacoes----
+As instrucoes de comparacao nao afetam as flags mas sim um registo vetor
+
+compara cada elemento de um vetor com o respetivo do outro e poem esse elemento do vetor resultado a  11111111 ou a 0000000
+1111111 em  complemento para 2 é o menor numero negativo ou seja menos 1
+
+
